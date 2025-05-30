@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="blueprint.html" defer></script>
+</head>
+<body>
+    <div class="big_div">
+        <div>
+            <h1>Project Name - Kanban Board</h1>
+            <input type="text" id="input_task_name" placeholder="Enter task title">
+            <button id="addTask">Add Task</button>
+        </div>
+        <div id="task_types">
+            <div class="task_type">
+                <h1>Todo</h1>
+                <ul id="todoList">
+                    <li type="text" class="task_list_item">example
+                        <button type="button" class="delete_task">
+                            <img src="icons/garbage.png" alt="garabage" class="delete_icon">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="task_type">
+                <h1>In Progress</h1>
+                <ul id="inProgressList">
+                    <li type="text" class="task_list_item">example
+                        <button type="button" class="delete_task">
+                            <img src="icons/garbage.png" alt="garabage" class="delete_icon">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="task_type">
+                <h1>Done</h1>
+                <ul id="doneList">
+                    <li type="text" class="task_list_item">example
+                        <button type="button" class="delete_task">
+                            <img src="icons/garbage.png" alt="garabage" class="delete_icon">
+                        </button>
+                    </li>    
+                </ul>
+            </div>
+        </div>
+        <div>
+            <a href="projects.html">
+                <button>Go to projects</button>
+            </a> 
+        </div>
+    </div>
+
+</body>
+</html>
