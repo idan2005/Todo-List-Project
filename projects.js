@@ -26,21 +26,14 @@ document.getElementById('addProject').onclick = function() {
         document.getElementById('projectList').appendChild(li);
         document.getElementById('input_project_name').value = '';
     };
-    loadProjects = function() {
-        let projects = JSON.parse(localStorage.getItem('projects') || '[]');
-        return projects;
+newProjectListItem = function(projectName) {
+    let li = document.createElement('li');
+    let btn = document.createElement('button');
+    btn.textContent =  projectName
+    btn.onclick = function() {
+        window.location.href = `blueprint.html?project=${projectName}`;
     };
-    saveProjects = function(projects) {
-        localStorage.setItem('projects', JSON.stringify(projects));
-    };
-    newProjectListItem = function(projectName) {
-        let li = document.createElement('li');
-        let btn = document.createElement('button');
-        btn.textContent =  projectName
-        btn.onclick = function() {
-            window.location.href = `blueprint.html?project=${projectName}`;
-        };
-        li.id = projectName;
-        li.appendChild(btn);
-        return li;
-    }
+    li.id = projectName;
+    li.appendChild(btn);
+    return li;
+}
