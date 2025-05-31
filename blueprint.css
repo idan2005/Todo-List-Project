@@ -1,4 +1,3 @@
-
 .big_div{
     background-color: lightgray;
     margin: 10px;
@@ -17,7 +16,6 @@ body{
     margin: auto;
 
 }
-
 input {
     width: 500px;
     border: 1px solid #ccc;
@@ -26,15 +24,19 @@ input {
     font-size: 16px;
     height: 40px;
 }
+
 button{
     background-color: white;
     color: blue;
     font-size: 16px;
-    width: 150px;
+    width: 200px;
     height: 50px;
-    margin: 10px;
 }
-
+#project_name{
+    font-size: 40px;
+    color: black;
+    text-align: center;
+}
 #task_types {
     display: flex;
     flex-direction: row;
@@ -82,10 +84,10 @@ button:hover {
     color: black;
     text-align: center;
 }
-button{
-    background-color: white;
-    color: blue;
-    font-size: 16px;
-    width: 200px;
-    height: 50px;
+
+
+#project_buttons{
+    display: flex;
+    gap: 30px; 
+    justify-content: center; 
 }
