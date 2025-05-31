@@ -1,10 +1,3 @@
-#addProject{
-    background-color: blue;
-    color: white;
-    font-size: 16px;
-    width: 120px;
-    height: 40px;
-}
 
 .big_div{
     background-color: lightgray;
@@ -24,11 +17,7 @@ body{
     margin: auto;
 
 }
-#project_name{
-    font-size: 24px;
-    color: black;
-    text-align: center;
-}
+
 
 input {
     width: 500px;
@@ -42,13 +31,11 @@ button{
     background-color: white;
     color: blue;
     font-size: 16px;
-    width: 200px;
+    width: 150px;
     height: 50px;
+    margin: 10px;
 }
-#projectList {
-    list-style-type: none;
 
-}
 #task_types {
     display: flex;
     flex-direction: row;
@@ -67,19 +54,18 @@ button{
     list-style-type: none;
     background-color: white;
     padding: 10px;
-    align-items:flex-start;
     width: 300px;
     height: 40px;
-    align-content: center;
+    display: flex;   
+    align-items: center;  
 }
 .delete_icon {
+    margin-left: auto;       
     background-color: red;
     color: white;
     font-size: 16px;
     width: 20px;
     height: 20px;
-    align-content: end;
-
 }
 .delete_task {
     color: white;
@@ -90,4 +76,17 @@ button{
 }
 button:hover {
     cursor: pointer;
+}
+
+.list_title {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+}
+button{
+    background-color: white;
+    color: blue;
+    font-size: 16px;
+    width: 200px;
+    height: 50px;
 }
