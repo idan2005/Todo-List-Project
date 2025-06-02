@@ -13,13 +13,17 @@ document.getElementById('addProject').onclick = function() {
             alert('Please enter a project name.');
             return;
         }
+        let projects = loadProjects();
+        if (projects.find(p => p.name === projectName)) {
+            alert('Project already exists.');
+            return;
+        }
         let project = {
             name: projectName,
             todoList: [],
             inProgressList: [],
             doneList: []
         }
-        let projects = loadProjects();
         projects.push(project);
         saveProjects(projects);
         let li = newProjectListItem(projectName);
