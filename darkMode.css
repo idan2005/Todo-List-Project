@@ -1,0 +1,23 @@
+body.dark-mode {
+    background-color: #222;
+    color: #cfcfcf;
+}
+.dark-mode .big_div {
+    background-color: #333;
+}
+.dark-mode .task_type {
+    background-color: #444;
+}
+.dark-mode .task_list_item {
+    background-color: black;
+    color: #cfcfcf;
+}
+.dark-mode input,
+.dark-mode button {
+    background-color: black;
+    color: #cfcfcf;
+}
+
+.dark-mode #project_name {
+    color: #cfcfcf;
+}
