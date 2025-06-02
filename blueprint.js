@@ -20,11 +20,11 @@ window.onload = function() {
             const taskName = e.dataTransfer.getData('text/plain');
             const sourceList = e.dataTransfer.getData('sourceList');
             const targetList = listId;
-            const listItem = e.dataTransfer.getData('listItem');
+            const listItemId = e.dataTransfer.getData('listItem');
             console.log(`[drop] taskName:`, taskName);
             console.log(`[drop] sourceList:`, sourceList);
             console.log(`[drop] targetList:`, targetList);
-            console.log(`[drop] listItem:`, listItem);
+            console.log(`[drop] listItemId:`, listItemId);
             if (!taskName) {
                 console.warn(`[drop] No taskName found in dataTransfer`);
             }
@@ -34,7 +34,7 @@ window.onload = function() {
 
             if (sourceList !== targetList && taskName && sourceList) {
                 console.log(`Moving task: ${taskName} from ${sourceList} to ${targetList}`);
-                removeTask(taskName, listItem, sourceList);
+                removeTask(taskName, listItemId, sourceList);
                 addTaskToList(taskName, targetList);
             } else {
                 console.log(`[drop] Not moving: sourceList === targetList or missing data`);
@@ -57,20 +57,20 @@ function newTaskListItem(taskName, listId) {
     li.className = 'task_list_item';
     li.textContent = taskName;
     li.draggable = true; // Make draggable
-
+    li.id = `${taskName}-${listId}`; // Unique ID for the task item
     // Drag events
     li.addEventListener('dragstart', function (e) {
         console.log(`[dragstart] task: ${taskName}, from list: ${listId}`);
         e.dataTransfer.setData('text/plain', taskName);
         e.dataTransfer.setData('sourceList', listId);
-        e.dataTransfer.setData('listItem', this);
+        e.dataTransfer.setData('listItem', li.id);
     });
     let img = document.createElement('img');
     img.src = 'icons/garbage.png';
     img.alt = 'garbage';
     img.className = 'delete_icon';
     img.addEventListener('click', function() {
-        removeTask(taskName, li, li.parentElement.id);
+        removeTask(taskName, li.id, li.parentElement.id);
     });
     li.appendChild(img);
     return li;
@@ -112,13 +112,15 @@ document.getElementById('btnDeleteProject').onclick = function() {
     }
 }
 
-function removeTask(taskName, listItem, listId) {
+function removeTask(taskName, listItemId, listId) {
     let projects = loadProjects();
     let project = projects.find(p => p.name === projectName);
     console.log(`Removing task: ${taskName} from list: ${listId}`);
     project[listId].splice(project[listId].indexOf(taskName), 1);
     saveProjects(projects);
     console.log(`Task removed: ${taskName}`);
-
-    //listItem.remove();
+    console.log(`Removing list item from DOM:`, listItemId);
+    let listElement = document.getElementById(listId);
+    let li = document.getElementById(listItemId);
+    listElement.removeChild(li);
 }
