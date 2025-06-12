@@ -19,9 +19,9 @@ window.onload = function() {
             const listItemId = e.dataTransfer.getData('listItem');
 
             if (sourceList !== targetList && taskName && sourceList) {
-                console.log(`Moving task: ${taskName} from ${sourceList} to ${targetList}`);
-                removeTask(taskName, listItemId, sourceList);
+                //console.log(`Moving task: ${taskName} from ${sourceList} to ${targetList}`);
                 addTaskToList(taskName, targetList);
+                removeTask(taskName, listItemId, sourceList);
                 updateTaskCounters();
             }
         });
@@ -51,18 +51,20 @@ function updateTaskCounters() {
 }
 
 function removeTask(taskName, listItemId, listId) {
-    console.log(`Removing task: ${taskName}  with id ${listItemId} from list: ${listId}`);
+    //console.log(`Removing task: ${taskName}  with id ${listItemId} from list: ${listId}`);
 
     let projects = loadProjects();
     let project = projects.find(p => p.name === projectName);
     project[listId].splice(project[listId].indexOf(taskName), 1);
     saveProjects(projects);
-    console.log(`Task removed from storage: ${taskName}`);
+    //console.log(`Task removed from storage: ${taskName}`);
 
     let listElement = document.getElementById(listId);
     let li = document.getElementById(listItemId);
     listElement.removeChild(li);
-    console.log(`Task remove from DOM`, listItemId);
+    //console.log(`Task remove from DOM`, listItemId);
+
+    updateTaskCounters();
 }
 
 function newTaskListItem(taskName, listId) {
@@ -95,6 +97,10 @@ function newTaskListItem(taskName, listId) {
     editImage.className = 'edit_icon';
     editImage.addEventListener('click', function() {
         let newTaskName = prompt('Edit task name:', taskName);
+        if (!newTaskName) {
+            alert('Task name cannot be empty.');
+            return;
+        }
         if (newTaskName !== taskName) {
             removeTask(taskName, li.id, listId);
             addTaskToList(newTaskName, listId);
@@ -135,6 +141,7 @@ document.getElementById('addTask').onclick = function() {
     }
     document.getElementById('input_task_name').value = '';
     addTaskToList(taskName, 'todoList'); 
+    updateTaskCounters();
 }
 
 document.getElementById('btnDeleteProject').onclick = function() {

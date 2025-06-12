@@ -1,8 +1,8 @@
-document.getElementById('toggleDarkMode').onclick = function() {
-    document.body.classList.toggle('dark-mode');
-    updateDeleteIcons();
-    updateEditIcons();
-};
+// document.getElementById('toggleDarkMode').onclick = function() {
+//     document.body.classList.toggle('dark-mode');
+//     updateDeleteIcons();
+//     updateEditIcons();
+// };
 
 function updateDeleteIcons() {
     const isDark = document.body.classList.contains('dark-mode');

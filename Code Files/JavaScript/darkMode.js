@@ -37,6 +37,8 @@ if (toggleButton) { // Check if the button exists
     toggleButton.addEventListener('click', () => {
         const currentlyEnabled = body.classList.contains('dark-mode');
         setDarkModePreference(!currentlyEnabled); // Toggle and save
+        updateDeleteIcons();
+        updateEditIcons();
     });
 }
 
