@@ -22,7 +22,8 @@ window.onload = function() {
                 console.log(`Moving task: ${taskName} from ${sourceList} to ${targetList}`);
                 removeTask(taskName, listItemId, sourceList);
                 addTaskToList(taskName, targetList);
-            } 
+                updateTaskCounters();
+            }
         });
     });
 
@@ -34,6 +35,18 @@ window.onload = function() {
             let li = newTaskListItem(task, listId);
             document.getElementById(listId).appendChild(li);
         });
+    });
+    updateTaskCounters();
+}
+function updateTaskCounters() {
+    let projects = loadProjects();
+    let project = projects.find(p => p.name === projectName);
+
+    ['todoList', 'inProgressList', 'doneList'].forEach(listId => {
+        let listTitle = document.getElementById(`${listId}Title`);
+        let taskCount = project[listId].length;
+        let listName = listId.charAt(0).toUpperCase() + listId.slice(1, -4); // get the list name without 'List'
+        listTitle.textContent = `${listName} (${taskCount})`;
     });
 }
 
@@ -68,34 +81,36 @@ function newTaskListItem(taskName, listId) {
         e.dataTransfer.setData('listItem', li.id);
     });
 
-    let img = document.createElement('img');
+    let deleteImage = document.createElement('img');
 
-    // check if dark mode is enabled
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    if (isDarkMode) {
-        img.src = 'icons/blackGarbage.png'; 
-    } else {
-        img.src = 'icons/garbage.png'; 
-    } 
-    img.alt = 'garbage';
-    img.className = 'delete_icon';
-    img.addEventListener('click', function() {
+    deleteImage.alt = 'garbage';
+    deleteImage.className = 'delete_icon';
+    deleteImage.addEventListener('click', function() {
         removeTask(taskName, li.id, li.parentElement.id);
     });
-    
-    let btn = document.createElement('button');
-    btn.textContent = 'Edit';
-    btn.id = 'edit_button';
-    btn.onclick = function() {
+
+    let editImage = document.createElement('img');
+
+    editImage.alt = 'edit';
+    editImage.className = 'edit_icon';
+    editImage.addEventListener('click', function() {
         let newTaskName = prompt('Edit task name:', taskName);
         if (newTaskName !== taskName) {
             removeTask(taskName, li.id, listId);
             addTaskToList(newTaskName, listId);
         }
-    };
+    });
 
-    li.appendChild(btn);
-    li.appendChild(img);
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    if (isDarkMode) {
+        deleteImage.src = '../../icons/blackGarbage.png'; 
+        editImage.src = '../../icons/blackEdit.png';
+    } else {
+        deleteImage.src = '../../icons/garbage.png'; 
+        editImage.src = '../../icons/whiteEdit.png';
+    } 
+    li.appendChild(editImage);
+    li.appendChild(deleteImage);
     return li;
 }
  

@@ -21,3 +21,9 @@ body.dark-mode {
 .dark-mode #project_name {
     color: #cfcfcf;
 }
+
+
+.dark-mode .edit_button {
+    width: 10px;
+    height: 10px;
+}

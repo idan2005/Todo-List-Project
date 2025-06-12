@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../CssFiles/blueprint.css">
-    <link rel="stylesheet" href="../CssFiles/darkMode.css">
-
+    <link rel="stylesheet" href="../Css/blueprint.css">
+    <link rel="stylesheet" href="../Css/darkMode.css">
     <script src="../JavaScript/storageUtils.js" defer></script>
     <script src="../JavaScript/blueprint.js" defer></script>
     <script src="../JavaScript/darkMode.js" defer></script>
-
+    <script src="../JavaScript/blueprintDarkMode.js" defer></script>
 </head>
 
 <body>
@@ -23,7 +22,7 @@
         </div>
         <div id="task_types">
             <div class="task_type">
-                <h1 class="list_title">Todo</h1>
+                <h1 class="list_title" id="todoListTitle">Todo</h1>
                 <ul id="todoList" class="task_list">
                     <!-- <li type="text" class="task_list_item">example
                         <img src="icons/garbage.png" alt="garabage" class="delete_icon" type="button">
@@ -32,12 +31,12 @@
                 </ul>
             </div>
             <div class="task_type">
-                <h1 class="list_title">In Progress</h1>
+                <h1 class="list_title" id="inProgressListTitle">In Progress</h1>
                 <ul id="inProgressList" class="task_list">
                 </ul>
             </div>
             <div class="task_type">
-                <h1 class="list_title">Done</h1>
+                <h1 class="list_title" id="doneListTitle">Done</h1>
                 <ul id="doneList" class="task_list">
                 </ul>
             </div>
