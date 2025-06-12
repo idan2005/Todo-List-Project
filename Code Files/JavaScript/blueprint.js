@@ -76,13 +76,25 @@ function newTaskListItem(taskName, listId) {
         img.src = 'icons/blackGarbage.png'; 
     } else {
         img.src = 'icons/garbage.png'; 
-    }
-    
+    } 
     img.alt = 'garbage';
     img.className = 'delete_icon';
     img.addEventListener('click', function() {
         removeTask(taskName, li.id, li.parentElement.id);
     });
+    
+    let btn = document.createElement('button');
+    btn.textContent = 'Edit';
+    btn.id = 'edit_button';
+    btn.onclick = function() {
+        let newTaskName = prompt('Edit task name:', taskName);
+        if (newTaskName !== taskName) {
+            removeTask(taskName, li.id, listId);
+            addTaskToList(newTaskName, listId);
+        }
+    };
+
+    li.appendChild(btn);
     li.appendChild(img);
     return li;
 }
@@ -109,8 +121,6 @@ document.getElementById('addTask').onclick = function() {
     document.getElementById('input_task_name').value = '';
     addTaskToList(taskName, 'todoList'); 
 }
-
-
 
 document.getElementById('btnDeleteProject').onclick = function() {
     if (!projectName) {

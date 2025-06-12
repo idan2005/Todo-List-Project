@@ -5,11 +5,11 @@
     justify-content: top;
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
+    min-height: 95vh;
 }
 body{
     background-color: gray;
-    font-family: Arial, sans-serif;
+    font-family: Arial,;
     padding: 10px;
     margin: auto;
 
@@ -27,8 +27,9 @@ button{
     background-color: white;
     color: blue;
     font-size: 16px;
-    width: 200px;
-    height: 50px;
+    width: 160px;
+    height: 40px;
+    margin: 10px;
 }
 #project_name{
     font-size: 40px;
@@ -50,13 +51,21 @@ button{
     display: flex;   
     align-items: center;  
 }
+#edit_button{
+    background-color: white;
+    color: blue;
+    font-size: 16px;
+    width: 50px;
+    height: 30px;
+}
+
 .delete_icon {
     margin-left: auto;       
-    background-color: red;
     color: white;
     font-size: 16px;
     width: 20px;
     height: 20px;
+
 }
 .delete_task {
     color: white;
