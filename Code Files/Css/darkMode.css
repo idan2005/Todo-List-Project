@@ -8,6 +8,11 @@ body.dark-mode {
 .dark-mode .task_type {
     background-color: #444;
 }
+.dark-mode .project_list_item {
+    background-color: #444;
+    color: #cfcfcf;
+}
+.dark-mode .user_list_item,
 .dark-mode .task_list_item {
     background-color: black;
     color: #cfcfcf;
@@ -26,4 +31,12 @@ body.dark-mode {
 .dark-mode .edit_button {
     width: 10px;
     height: 10px;
+}
+.dark-mode #addUser,
+.dark-mode #addProject {
+    background-color: #555;
+    color: #cfcfcf;
+    font-size: 16px;
+    width: 120px;
+    height: 40px;
 }

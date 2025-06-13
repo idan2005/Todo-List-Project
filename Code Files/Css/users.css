@@ -1,4 +1,4 @@
-#addProject{
+#addUser{
     background-color: blue;
     color: white;
     font-size: 16px;
@@ -23,7 +23,6 @@ body{
 
 }
 
-
 input {
     width: 500px;
     border: 1px solid #ccc;
@@ -44,15 +43,33 @@ button:hover {
     cursor: pointer;
 }
 
-#projectList {
+#userList {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
 }
 
-#projectList li {
+#userList li {
     display: flex;
     align-items: center;
     justify-content: center;
     list-style-type: none;
+}
+
+.delete_icon {
+    color: white;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+}
+
+.user_list_item{
+    list-style-type: none;
+    background-color: white;
+    padding: 10px;
+    width: 200px;
+    height: 40px;
+    display: flex;   
+    align-items: center;  
 }

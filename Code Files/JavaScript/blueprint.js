@@ -69,7 +69,6 @@ function removeTask(taskName, listItemId, listId) {
 
 function newTaskListItem(taskName, listId) {
     let li = document.createElement('li');
-    li.type = 'text';
     li.className = 'task_list_item';
     li.textContent = taskName;
     li.draggable = true; 
@@ -124,6 +123,11 @@ function newTaskListItem(taskName, listId) {
 function addTaskToList(taskName, listId) {
     let projects = loadProjects();
     let project = projects.find(p => p.name === projectName);
+    let task = {
+        name: taskName,
+        description: null,
+        assignedTo: null
+    };
 
     project[listId].push(taskName);
     saveProjects(projects);

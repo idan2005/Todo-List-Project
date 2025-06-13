@@ -1,4 +1,4 @@
-
+isDarkMode = localStorage.getItem('isDarkMode') === 'true';
 window.onload = function() {
     let projects = loadProjects();
     let projectList = document.getElementById('projectList');
