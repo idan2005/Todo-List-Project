@@ -12,10 +12,12 @@ body.dark-mode {
     background-color: #444;
     color: #cfcfcf;
 }
+.dark-mode .project_list_item,
 .dark-mode .user_list_item,
 .dark-mode .task_list_item {
     background-color: black;
     color: #cfcfcf;
+    border: 3px solid gray;
 }
 .dark-mode input,
 .dark-mode button {
@@ -32,11 +34,23 @@ body.dark-mode {
     width: 10px;
     height: 10px;
 }
+.dark-mode #addTask,
 .dark-mode #addUser,
 .dark-mode #addProject {
     background-color: #555;
     color: #cfcfcf;
     font-size: 16px;
-    width: 120px;
+    width: 160px;
     height: 40px;
+    margin: 5px;
+    border: 1px solid #ccc; 
+}
+
+
+.dark-mode #userCheckboxes {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background: black;     
 }

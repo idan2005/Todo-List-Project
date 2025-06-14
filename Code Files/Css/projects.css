@@ -2,7 +2,7 @@
     background-color: blue;
     color: white;
     font-size: 16px;
-    width: 120px;
+    width: 160px;
     height: 40px;
 }
 
@@ -22,7 +22,6 @@ body{
     margin: auto;
 
 }
-
 
 input {
     width: 500px;

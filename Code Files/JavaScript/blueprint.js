@@ -37,6 +37,8 @@ window.onload = function() {
         });
     });
     updateTaskCounters();
+
+    fillUsersCheckboxes();
 }
 function updateTaskCounters() {
     let projects = loadProjects();
@@ -67,8 +69,20 @@ function removeTask(taskName, listItemId, listId) {
     updateTaskCounters();
 }
 
-function newTaskListItem(taskName, listId) {
+function newTaskListItem(task, listId) {
+    let li = newLI(task, listId);
+    let deleteImage = newDeletebtn();
+    let editImage = newEditBtn();
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    addIcons(deleteImage, editImage, isDarkMode);
+
+    li.appendChild(editImage);
+    li.appendChild(deleteImage);
+    return li;
+}
+function newLI(task, listId){
     let li = document.createElement('li');
+    let taskName = task.name; // Assuming task is an object with a 'name' property
     li.className = 'task_list_item';
     li.textContent = taskName;
     li.draggable = true; 
@@ -81,15 +95,18 @@ function newTaskListItem(taskName, listId) {
         e.dataTransfer.setData('sourceList', listId);
         e.dataTransfer.setData('listItem', li.id);
     });
-
-    let deleteImage = document.createElement('img');
-
-    deleteImage.alt = 'garbage';
-    deleteImage.className = 'delete_icon';
-    deleteImage.addEventListener('click', function() {
+    return li;
+}
+function newDeletebtn(){
+    let btn = document.createElement('img');
+    btn.alt = 'garbage';
+    btn.className = 'delete_icon';
+    btn.addEventListener('click', function() {
         removeTask(taskName, li.id, li.parentElement.id);
     });
-
+    return btn;
+}
+function newEditBtn(){
     let editImage = document.createElement('img');
 
     editImage.alt = 'edit';
@@ -105,20 +122,12 @@ function newTaskListItem(taskName, listId) {
             addTaskToList(newTaskName, listId);
         }
     });
-
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    if (isDarkMode) {
-        deleteImage.src = '../../icons/blackGarbage.png'; 
-        editImage.src = '../../icons/blackEdit.png';
-    } else {
-        deleteImage.src = '../../icons/garbage.png'; 
-        editImage.src = '../../icons/whiteEdit.png';
-    } 
-    li.appendChild(editImage);
-    li.appendChild(deleteImage);
-    return li;
+    return editImage;
 }
- 
+function addIcons(deleteImage, editImage, isDarkMode) {
+    deleteImage.src = isDarkMode ? '../../icons/blackGarbage.png' : '../../icons/garbage.png';
+    editImage.src = isDarkMode ? '../../icons/blackEdit.png' : '../../icons/whiteEdit.png';
+}
 // Function to add a task to the specified list, both to the project data and the DOM
 function addTaskToList(taskName, listId) {
     let projects = loadProjects();
@@ -129,11 +138,11 @@ function addTaskToList(taskName, listId) {
         assignedTo: null
     };
 
-    project[listId].push(taskName);
+    project[listId].push(task);
     saveProjects(projects);
 
     let listElement = document.getElementById(listId);
-    let li = newTaskListItem(taskName, listId);
+    let li = newTaskListItem(task, listId);
     listElement.appendChild(li);
 }
 
@@ -162,3 +171,21 @@ document.getElementById('btnDeleteProject').onclick = function() {
     }
 }
 
+function fillUsersCheckboxes() {
+
+    let users = loadUsers();
+    let userContainer = document.getElementById('userCheckboxes');
+
+    users.forEach(user => {
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `user-${user.name}`;
+        checkbox.value = user.name;
+
+        let label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = user.name;
+        label.appendChild(checkbox);
+        userContainer.appendChild(label);
+    });
+}

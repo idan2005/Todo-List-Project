@@ -9,7 +9,6 @@
     <script src="../JavaScript/darkMode.js" defer></script>
     <script src="../JavaScript/storageUtils.js" defer></script>
     <script src="../JavaScript/blueprint.js" defer></script>
-    <script src="../JavaScript/iconsDarkMode.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +18,17 @@
             <h1 id="project_name"></h1>
             <input type="text" id="input_task_name" placeholder="Enter task title">
             <button id="addTask">Add Task</button>
-        </div>
+        </div> 
+        <div style="display: flex; flex-direction: row; gap: 10px;">
+            <input type="text" id="input_task_description" placeholder="Enter task description">
+            <div id="userCheckboxes" >
+                <!-- <label><input type="checkbox" value="idan"> Idan</label>
+                <label><input type="checkbox" value="alex"> Alex</label>
+                <label><input type="checkbox" value="sara"> Sara</label>
+                Add more users as needed -->
+            </div>
+            
+        </div> 
         <div id="task_types">
             <div class="task_type">
                 <h1 class="list_title" id="todoListTitle">Todo</h1>
