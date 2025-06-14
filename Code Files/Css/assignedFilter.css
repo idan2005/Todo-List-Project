@@ -54,3 +54,22 @@
     padding: 4px 10px;
     cursor: pointer;
 }
+
+.dark-mode .user-filter-multiselect {
+    background: #333;
+    border-color: #555;
+    color: #fff;
+}
+.dark-mode .user-options {
+    background: #444;
+    border-color: #555;
+    color: #cfcfcf;
+}
+.dark-mode .selected-users {
+    color: #cfcfcf;
+}
+.dark-mode .clear-users-btn {
+    background: #555;
+    color: #cfcfcf;
+    border-color: #666;
+}
