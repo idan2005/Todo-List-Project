@@ -34,6 +34,7 @@ body.dark-mode {
     width: 10px;
     height: 10px;
 }
+.dark-mode #btnSelectAll,
 .dark-mode #addTask,
 .dark-mode #addUser,
 .dark-mode #addProject {

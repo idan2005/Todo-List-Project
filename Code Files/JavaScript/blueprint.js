@@ -148,12 +148,19 @@ function addTaskToList(taskName, listId) {
 
 document.getElementById('addTask').onclick = function() {
     let taskName =document.getElementById('input_task_name').value;
+    let taskDescription = document.getElementById('input_task_description').value;
+    let assignedUsers = Array.from(document.querySelectorAll('.user_checkbox:checked')).map(cb => cb.value);
+    if (!taskDescription) {
+        taskDescription = null; 
+    }
     if (!taskName) {
         alert('Please enter a task name.');
         return;
     }
     document.getElementById('input_task_name').value = '';
-    addTaskToList(taskName, 'todoList'); 
+    document.getElementById('input_task_description').value = '';
+    
+    addTaskToList(taskName, taskDescription, 'todoList'); 
     updateTaskCounters();
 }
 
@@ -172,7 +179,6 @@ document.getElementById('btnDeleteProject').onclick = function() {
 }
 
 function fillUsersCheckboxes() {
-
     let users = loadUsers();
     let userContainer = document.getElementById('userCheckboxes');
 
@@ -181,7 +187,7 @@ function fillUsersCheckboxes() {
         checkbox.type = 'checkbox';
         checkbox.id = `user-${user.name}`;
         checkbox.value = user.name;
-
+        checkbox.className = 'user_checkbox';
         let label = document.createElement('label');
         label.htmlFor = checkbox.id;
         label.textContent = user.name;
@@ -189,3 +195,12 @@ function fillUsersCheckboxes() {
         userContainer.appendChild(label);
     });
 }
+
+document.getElementById('btnSelectAll').onclick = function() {
+    const checkboxes = document.querySelectorAll('.user_checkbox');
+    const anyUnchecked = Array.from(checkboxes).some(cb => !cb.checked);
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = anyUnchecked;
+    });
+};

@@ -14,21 +14,26 @@
 <body>
     <button id="toggleDarkMode">Toggle Dark Mode</button>
     <div class="big_div">
-        <div>
-            <h1 id="project_name"></h1>
-            <input type="text" id="input_task_name" placeholder="Enter task title">
-            <button id="addTask">Add Task</button>
-        </div> 
-        <div style="display: flex; flex-direction: row; gap: 10px;">
-            <input type="text" id="input_task_description" placeholder="Enter task description">
-            <div id="userCheckboxes" >
-                <!-- <label><input type="checkbox" value="idan"> Idan</label>
-                <label><input type="checkbox" value="alex"> Alex</label>
-                <label><input type="checkbox" value="sara"> Sara</label>
-                Add more users as needed -->
+        <h1 id="project_name"></h1>
+        <div style="display: flex; gap: 10px;">
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label for="input_task_name">Enter task name:</label>
+                <input type="text" id="input_task_name" placeholder="Enter task title">
+                <label for="input_task_description">Enter task description:</label>
+                <input type="text" id="input_task_description" placeholder="Enter task description">
+                <button id="addTask">Add Task</button>
             </div>
-            
-        </div> 
+
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label>Assign Users:</label>
+                <div id="userCheckboxes">
+                    <!-- User checkboxes here -->
+                </div>
+                <button id="btnSelectAll">Select All</button>
+            </div>
+        </div>
+
+
         <div id="task_types">
             <div class="task_type">
                 <h1 class="list_title" id="todoListTitle">Todo</h1>
