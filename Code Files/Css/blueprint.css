@@ -1,4 +1,13 @@
-.big_div{
+/* Base Styles */
+body {
+    background-color: gray;
+    font-family: Arial;
+    padding: 10px;
+    margin: auto;
+}
+
+/* Layout Containers */
+.big_div {
     background-color: lightgray;
     margin: 15px;
     align-items: center;
@@ -7,86 +16,11 @@
     flex-direction: column;
     min-height: 90vh;
 }
-body{
-    background-color: gray;
-    font-family: Arial,;
-    padding: 10px;
-    margin: auto;
 
-}
-input {
-    width: 500px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 12px;
-    font-size: 16px;
-    height: 40px;
-}
-
-button{
-    background-color: white;
-    color: blue;
-    font-size: 16px;
-    width: 160px;
-    height: 40px;
-    margin: 10px;
-}
-#toggleDarkMode{
-    margin: 5px;
-}
-#project_name{
-    font-size: 40px;
-    color: black;
-    text-align: center;
-}
 #task_types {
     display: flex;
     flex-direction: row;
     gap: 16px;
-}
-
-.task_list_item{
-    list-style-type: none;
-    background-color: white;
-    padding: 10px;
-    width: 300px;
-    height: 40px;
-    display: flex;   
-    align-items: center;  
-    margin: 5px;
-    border: 3px solid black;
-}
-
-.edit_icon {
-    color: white;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    margin-left: auto;
-
-}
-.delete_icon {
-    color: white;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-}
-
-.delete_task {
-    color: white;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    border: none;
-}
-button:hover {
-    cursor: pointer;
-}
-
-.list_title {
-    font-size: 30px;
-    color: black;
-    text-align: center;
 }
 
 .task_type {
@@ -98,25 +32,54 @@ button:hover {
     height: 500px;
     margin: 10px;
 }
-#project_buttons{
-    display: flex;
-    gap: 30px; 
-    justify-content: center; 
-}
-.task_list{
+
+/* Task Lists */
+.task_list {
     width: 100%;
     height: 400px;
     overflow-y: auto;
 }
-#btnSelectAll,
-#addTask{
-    background-color: blue;
+
+.task_list_item {
+    list-style-type: none;
+    background-color: white;
+    padding: 10px;
+    width: 300px;
+    height: 100px;
+    display: flex;   
+    flex-direction: column;
+    margin: 5px;
+    border: 3px solid black;
+    overflow-y: auto;
+}
+
+.list_title {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+}
+
+/* Task Icons */
+.edit_icon {
     color: white;
     font-size: 16px;
-    width: 160px;
-    height: 40px;
-    margin: 10px;
+    width: 20px;
+    height: 20px;
 }
+
+.delete_icon {
+    color: white;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+}
+
+.task_icons_div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* User Checkboxes */
 #userCheckboxes {
     display: flex;
     flex-direction: column;
@@ -124,13 +87,16 @@ button:hover {
     overflow-y: auto;
     background: white;    
     width: 160px;
+    margin-bottom: 10px;
 }
+
 #userCheckboxes label {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 10px;
 }
+
 input[type="checkbox"] {
     width: 30px;
     height: 20px;
@@ -138,6 +104,29 @@ input[type="checkbox"] {
     margin-top: 10px;
 }
 
+/* Buttons */
+button {
+    background-color: white;
+    color: blue;
+    font-size: 16px;
+    width: 160px;
+    height: 40px;
+    margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#btnSelectAll,
+#addTask {
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    width: 160px;
+    height: 40px;
+    margin: 10px;
+}
 
 #addTask {
     align-self: flex-start;
@@ -149,6 +138,30 @@ input[type="checkbox"] {
     margin-top: 10px;
 }
 
-#userCheckboxes {
-    margin-bottom: 10px;
+#toggleDarkMode {
+    margin: 5px;
 }
+
+/* Project Elements */
+#project_name {
+    font-size: 40px;
+    color: black;
+    text-align: center;
+}
+
+#project_buttons {
+    display: flex;
+    gap: 30px; 
+    justify-content: center; 
+}
+
+/* Form Inputs */
+input {
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    height: 40px;
+}
+

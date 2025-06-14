@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Css/blueprint.css">
     <link rel="stylesheet" href="../Css/darkMode.css">
+    <link rel="stylesheet" href="../Css/modal.css">
     <script src="../JavaScript/darkMode.js" defer></script>
     <script src="../JavaScript/storageUtils.js" defer></script>
     <script src="../JavaScript/blueprint.js" defer></script>
@@ -63,5 +64,26 @@
         </div>
     </div>
 
+
+    <!-- Add this before closing body tag -->
+    <div id="edit-task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Task</h2>
+            <div class="form-group">
+                <label>Task Title</label>
+                <input type="text" id="edit-task-title" placeholder="Enter task title">
+            </div>
+            <div class="form-group">
+                <label>Task Description</label>
+                <textarea id="edit-task-description" placeholder="Enter task description"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Assign Users</label>
+                <div id="edit-task-users"></div>
+            </div>
+            <button id="save-edit-task">Save Changes</button>
+        </div>
+    </div>
 </body>
 </html>
