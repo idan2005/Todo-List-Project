@@ -86,6 +86,7 @@ function addTaskToList(taskName, taskDescription, assignedUsers, listId) {
     let listElement = document.getElementById(listId);
     let li = newTaskListItem(task, listId);
     listElement.appendChild(li);
+    //filterTasks() 
 }
 
 function newTaskListItem(task, listId) {
@@ -188,6 +189,7 @@ function newEditBtn(task, li, listId) {
             document.getElementById('edit-task-users').innerHTML = ''; // Clear the user checkboxes
             updateTaskCounters();
             console.log(`Task "${task.name}" edited to "${newName}" in list "${listId}"`);
+            //filterTasks();
         }
 
     });
@@ -300,4 +302,5 @@ function removeTask(taskName, listItemId, listId) {
     //console.log(`Task remove from DOM`, listItemId);
 
     updateTaskCounters();
+    //filterTasks();
 }

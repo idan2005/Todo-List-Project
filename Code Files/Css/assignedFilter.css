@@ -17,7 +17,7 @@
 .user-options {
     display: none;
     position: absolute;
-      flex-direction: column;
+    flex-direction: column;
     left: 0;
     top: 100%;
     width: 100%;
@@ -33,10 +33,10 @@
 .user-filter-multiselect:hover .user-options {
     display: block;
 }
-.user-search {
-    width: 95%;
-    margin-bottom: 8px;
-    padding: 4px;
+.user-checkbox-list {
+    display: flex;
+    flex-direction: column;
+
 }
 .user-checkbox-list label {
     display: flex;

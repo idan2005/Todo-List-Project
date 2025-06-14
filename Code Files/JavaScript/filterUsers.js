@@ -33,6 +33,8 @@ function filterTasks() {
 
 
 function renderAllTaskLists(selectedUsers) {
+    let projects = loadProjects();
+    let project = projects.find(p => p.name === projectName);
     console.log('Rendering tasks for project:', project?.name);
     ['todoList', 'inProgressList', 'doneList'].forEach(listId => {
         const ul = document.getElementById(listId);
@@ -62,13 +64,23 @@ function renderAllTaskLists(selectedUsers) {
             let li = newTaskListItem(task, listId);
             ul.appendChild(li);
         });
+        let listTitle = document.getElementById(`${listId}Title`);
+        let taskCount = filteredTasks.length;
+        let listName = listId.charAt(0).toUpperCase() + listId.slice(1, -4); // get the list name without 'List'
+        listTitle.textContent = `${listName} (${taskCount})`;
     });
 }
 
 
 document.getElementById('clear_user_btn').addEventListener('click', function() {
-    userCheckboxes.forEach(checkbox => {
-        checkbox.checked = false; // Uncheck all checkboxes
-    });
+    resetFilter();
     filterTasks();
+    updateTaskCounters();
 });
+
+function resetFilter(){
+    const userCheckboxes = document.querySelectorAll('.filter_user_checkbox');
+    userCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+}
