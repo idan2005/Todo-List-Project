@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="../Css/blueprint.css">
     <link rel="stylesheet" href="../Css/darkMode.css">
     <link rel="stylesheet" href="../Css/modal.css">
+    <link rel="stylesheet" href="../Css/assignedFilter.css">
     <script src="../JavaScript/darkMode.js" defer></script>
     <script src="../JavaScript/storageUtils.js" defer></script>
     <script src="../JavaScript/blueprint.js" defer></script>
+    <script src="../JavaScript/filterUsers.js" defer></script>
 </head>
 
 <body>
@@ -33,7 +35,16 @@
                 <button id="btnSelectAll">Select All</button>
             </div>
         </div>
-
+        <div class="user-filter-multiselect" tabindex="0">
+            <span class="selected-users">Assigned to: All</span>
+            <div class="user-options">
+                <input type="text" class="user-search" placeholder="Search...">
+                <div id="user-checkbox-list">
+                    <!-- User checkboxes will be generated here -->
+                </div>
+                <button type="button" id="clear_user_btn">Clear</button>
+            </div>
+        </div>
 
         <div id="task_types">
             <div class="task_type">
@@ -71,16 +82,18 @@
             <span class="close">&times;</span>
             <h2>Edit Task</h2>
             <div class="form-group">
-                <label>Task Title</label>
+                <label>Task Title:</label>
                 <input type="text" id="edit-task-title" placeholder="Enter task title">
             </div>
             <div class="form-group">
-                <label>Task Description</label>
-                <textarea id="edit-task-description" placeholder="Enter task description"></textarea>
+                <label>Task Description:</label>
+                <input type="text" id="edit-task-description" placeholder="Enter task description">
             </div>
             <div class="form-group">
-                <label>Assign Users</label>
-                <div id="edit-task-users"></div>
+                <label>Assign Users:</label>
+                <div id="edit-task-users">
+                    <!-- <input type="checkbox" id="edit-task-user1" class="edit_user_checkbox" value="User1"> User1 -->
+                </div>
             </div>
             <button id="save-edit-task">Save Changes</button>
         </div>

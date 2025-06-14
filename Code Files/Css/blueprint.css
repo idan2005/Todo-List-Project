@@ -14,7 +14,7 @@ body {
     justify-content: top;
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
+    min-height: 85vh;
 }
 
 #task_types {
@@ -164,4 +164,3 @@ input {
     font-size: 16px;
     height: 40px;
 }
-

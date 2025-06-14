@@ -1,6 +1,5 @@
 // Inside your darkMode.js file or wherever you handle the toggle
 const toggleButton = document.getElementById('toggleDarkMode');
-const body = document.body;
 var isDarkMode = document.body.classList.contains('dark-mode'); // Get current state
 
 // Function to apply or remove dark mode class and save preference

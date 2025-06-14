@@ -53,3 +53,55 @@
     cursor: pointer;
     float: right;
 }
+
+/* User Checkboxes */
+#edit-task-users {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;    
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+#edit-task-users label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+#edit-task-users input[type="checkbox"] {
+    width: 30px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+.dark-mode .modal-content {
+    background-color: #333;
+    color: #cfcfcf;
+}
+.dark-mode .close {
+    color: #cfcfcf;
+}
+.dark-mode .form-group input,
+.dark-mode .form-group textarea {
+    background-color: #444;
+    color: #cfcfcf;
+    border: 1px solid #555;
+}
+
+.dark-mode #save-edit-task {
+    background-color: #555;
+    color: #cfcfcf;
+}
+
+.dark-mode #edit-task-users {
+    background: #444;
+}
+
+.dark-mode #edit-task-users label {
+    color: #cfcfcf;
+}

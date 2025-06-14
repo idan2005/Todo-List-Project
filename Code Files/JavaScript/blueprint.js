@@ -1,6 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const projectName = urlParams.get('project');
 document.getElementById('project_name').textContent = ` ${projectName} - Kanban Board`;
+var projects = loadProjects();
+var project = projects.find(p => p.name === projectName);
 
 
 window.onload = function() {
@@ -29,9 +31,6 @@ window.onload = function() {
         });
     });
 
-    let projects = loadProjects();
-    let project = projects.find(p => p.name === projectName);
-
     ['todoList', 'inProgressList', 'doneList'].forEach(listId => {
         project[listId].forEach(task => {
             let li = newTaskListItem(task, listId);
@@ -41,6 +40,7 @@ window.onload = function() {
     updateTaskCounters();
 
     fillUsersCheckboxes();
+    loadFilterUsers();
 }
 
 
@@ -109,7 +109,7 @@ function newTaskListItem(task, listId) {
     }
 
     let deleteImage = newDeletebtn(task.name, li);
-    let editImage = newEditBtn(task.name, task.description, li, listId);
+    let editImage = newEditBtn(task, li, listId);
     let iconsDiv = document.createElement('div');
     iconsDiv.className = 'task_icons_div';
     iconsDiv.appendChild(editImage);
@@ -130,7 +130,7 @@ function newDeletebtn(taskName, li) {
     });
     return btn;
 }
-function newEditBtn(taskName, taskDescription, li, listId) {
+function newEditBtn(task, li, listId) {
     let editImage = document.createElement('img');
 
     editImage.alt = 'edit';
@@ -139,31 +139,35 @@ function newEditBtn(taskName, taskDescription, li, listId) {
         const modal = document.getElementById('edit-task-modal');
         const titleInput = document.getElementById('edit-task-title');
         const descriptionInput = document.getElementById('edit-task-description');
-        
+        // load users checkboxes
+        fillEditTaskUsers(task.assignedTo);
+        // check already assigned users
+        const userCheckboxes = document.querySelectorAll('#edit-task-users');
+
+        userCheckboxes.forEach(checkbox => {
+            checkbox.checked = task.assignedTo.includes(checkbox.value);
+        });
         // Set current values
-        titleInput.value = taskName;
-        descriptionInput.value = taskDescription;
-        
+        titleInput.value = task.name;
+        descriptionInput.value = task.description;
+
         // Show modal
         modal.style.display = 'block';
         
         // Close button functionality
         document.querySelector('.close').onclick = function() {
             modal.style.display = 'none';
+            titleInput.value = '';
+            descriptionInput.value = '';
+            document.querySelectorAll('.user-checkbox').forEach(cb => cb.checked = false); // Uncheck all user checkboxes
         }
         
-        // Close when clicking outside
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-        
+
         // Save changes
         document.getElementById('save-edit-task').onclick = function() {
             const newName = titleInput.value.trim();
             const newDescription = descriptionInput.value.trim();
-            const newAssignedUsers = Array.from(document.querySelectorAll('.user-checkbox:checked'))
+            const newAssignedUsers = Array.from(document.querySelectorAll('.edit_user_checkbox:checked'))
                 .map(cb => cb.value);
             
             if (!newName) {
@@ -171,12 +175,19 @@ function newEditBtn(taskName, taskDescription, li, listId) {
                 return;
             }
             
-            if (newName !== taskName) {
-                removeTask(taskName, li.id, listId);
+            if (newName !== task.name || newDescription !== task.description ||
+                JSON.stringify(newAssignedUsers) !== JSON.stringify(task.assignedTo)) {
+                removeTask(task.name, li.id, listId);
                 addTaskToList(newName, newDescription, newAssignedUsers, listId);
             }
             
             modal.style.display = 'none';
+            // Clear the input fields
+            titleInput.value = '';
+            descriptionInput.value = '';
+            document.getElementById('edit-task-users').innerHTML = ''; // Clear the user checkboxes
+            updateTaskCounters();
+            console.log(`Task "${task.name}" edited to "${newName}" in list "${listId}"`);
         }
 
     });
@@ -223,6 +234,24 @@ function fillUsersCheckboxes() {
     });
 }
 
+function fillEditTaskUsers(assignedUsers) {
+    let users = loadUsers();
+    let userContainer = document.getElementById('edit-task-users');
+
+    users.forEach(user => {
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `edit_user_${user.name}`;
+        checkbox.value = user.name;
+        checkbox.className = 'edit_user_checkbox';
+        checkbox.checked = assignedUsers.includes(user.name); // Check if user is already assigned
+        let label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = user.name;
+        label.appendChild(checkbox);
+        userContainer.appendChild(label);
+    });
+}
 function updateTaskCounters() {
     let projects = loadProjects();
     let project = projects.find(p => p.name === projectName);
